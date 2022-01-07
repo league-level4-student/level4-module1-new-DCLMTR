@@ -1,5 +1,7 @@
 package _00_Intro_to_Exceptions;
 
+import javax.swing.JOptionPane;
+
 public class ExceptionsDemo {
 
     /*
@@ -19,7 +21,11 @@ public class ExceptionsDemo {
             throw new Exception();
         }
     }
-
+	public static void testPositive (int x) throws Exception {
+	if(x < 0) {
+		throw new NegativeNumberException();
+	}
+	}
     /*
      * This is also known as a checked exception. Normally these only occur when
      * an issue outside of your code's control could occur.
@@ -44,6 +50,15 @@ public class ExceptionsDemo {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	try {
+    		testPositive(-1);
+    	} catch(NegativeNumberException e) {
+    		e.scaryPopup();
+    	} catch (Exception e){
+    		e.printStackTrace();
+    	} finally {
+    		JOptionPane.showMessageDialog(null, "Your computer is okay.");
+    	}
         /*
          * 2. Call the testFiveOrGreater method with a value less than 5 inside
          * the try block.
@@ -56,7 +71,7 @@ public class ExceptionsDemo {
          */
 
         // 4. Run the program. Did the stack trace print out?
-
+    	
     }
 
     /*
