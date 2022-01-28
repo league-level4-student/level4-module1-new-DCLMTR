@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,10 +60,11 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 
     private JFrame window;
     private Timer timer;
-
-    Polymorph bluePoly;
-    Polymorph redPoly;
-    Polymorph movingPoly;
+    
+    ArrayList<Polymorph> polyArray = new ArrayList<Polymorph>();
+    Polymorph bluePoly = new BluePolymorph(50, 50, 50, 50);
+    Polymorph redPoly = new RedPolymorph(100, 300, 100, 100);
+    Polymorph movingPoly = new MovingPoly(50, 50, 50, 50);
     public static void main(String[] args) {
         new PolymorphWindow().buildWindow();
     }
@@ -75,10 +77,12 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         window.pack();
         window.setVisible(true);
 
-        bluePoly = new BluePolymorph(50, 50, 50, 50);
-        redPoly = new RedPolymorph(100, 300, 100, 50);
-        movingPoly = new MovingPoly(50, 50, 0, 0);
-
+        //bluePoly = new BluePolymorph(50, 50, 50, 50);
+        //redPoly = new RedPolymorph(100, 300, 100, 50);
+        polyArray = new ArrayList<Polymorph>();
+        polyArray.add(bluePoly);
+        polyArray.add(redPoly);
+        polyArray.add(movingPoly);
         timer = new Timer(1000 / 30, this);
         timer.start();
     }
@@ -89,14 +93,20 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         g.fillRect(0, 0, 500, 500);
 
         // draw polymorph
-        bluePoly.draw(g);
-        redPoly.draw(g);
+        //bluePoly.draw(g);
+        //redPoly.draw(g);
+        for(int i = 0; i < polyArray.size(); i++) {
+        	polyArray.get(i).draw(g);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
-        bluePoly.update();
-        redPoly.update();
+        //bluePoly.update();
+        //redPoly.update();
+        for(int i = 0; i < polyArray.size(); i++) {
+        	polyArray.get(i).update();
+        }
     }
 }
