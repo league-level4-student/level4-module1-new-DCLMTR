@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -53,7 +55,7 @@ import javax.swing.Timer;
  *  clicked. Hint: MouseListener interface.
  */
 
-public class PolymorphWindow extends JPanel implements ActionListener {
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener {
 
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
@@ -76,7 +78,8 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
-
+        addMouseMotionListener(this);
+        
         //bluePoly = new BluePolymorph(50, 50, 50, 50);
         //redPoly = new RedPolymorph(100, 300, 100, 50);
         polyArray = new ArrayList<Polymorph>();
@@ -109,4 +112,18 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         	polyArray.get(i).update();
         }
     }
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		polyArray.get(2).x = e.getX()-polyArray.get(2).width/2;
+		polyArray.get(2).y = e.getY()-polyArray.get(2).height/2;
+		polyArray.get(2).draw(getGraphics());
+	}
 }

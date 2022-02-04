@@ -26,10 +26,8 @@ public abstract class Polymorph {
 			super(x, y, width, height);
 		}
 		public void update() {
-			x+=10;
-			y+=10;
+			
 		}
-		
 		public void draw(Graphics g) {
 			g.setColor(Color.BLACK);
 			g.fillRect(x, y, width, height);
