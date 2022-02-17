@@ -17,11 +17,16 @@ public class Hospital {
 	public ArrayList<Patient> getPatients() {
 		return patientList;
 	}
-	public void assignPatientsToDoctors() {
+	public void assignPatientsToDoctors() throws Exception {
 		for(int i = 0; i < patientList.size(); i++) {
 			for(int j = 0; j < doctorList.size(); j++) {
 				if(doctorList.get(j).getPatients().size()<3) {
-					doctorList.get(j).assignPatient(patientList.get(i));
+					try {
+						doctorList.get(j).assignPatient(patientList.get(i));
+					} catch (DoctorFullException dfe) {
+						// TODO Auto-generated catch block
+						dfe.DoctorFull();
+					}
 					System.out.println(j + " " + doctorList.get(j).getPatients().size());
 					break;
 				}

@@ -2,7 +2,7 @@ package _06_Hospital;
 
 import java.util.ArrayList;
 
-public abstract class Doctor {
+public abstract class Doctor{
 	ArrayList<Patient> patients = new ArrayList<Patient>();
 	public void assignPatient(Patient patient) throws Exception{	
 		if(patients.size()>=3) {
